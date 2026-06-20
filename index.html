@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JNTUK SGPA & CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>SGPA Calculator</h2>
+
+<p>Enter grades as points separated by commas.</p>
+<p>Example: 10,9,8,10,9</p>
+
+<input type="text" id="grades" placeholder="Grade Points">
+
+<p>Enter corresponding credits separated by commas.</p>
+<p>Example: 3,4,3,3,1</p>
+
+<input type="text" id="credits" placeholder="Credits">
+
+<button onclick="calculateSGPA()">Calculate SGPA</button>
+
+<div class="result" id="sgpaResult"></div>
+
+<hr>
+
+<h2>CGPA Calculator</h2>
+
+<input type="text" id="sgpas" placeholder="Enter SGPAs separated by commas">
+
+<button onclick="calculateCGPA()">Calculate CGPA</button>
+
+<div class="result" id="cgpaResult"></div>
+
+<script>
+function calculateSGPA() {
+    let grades = document.getElementById("grades").value.split(",").map(Number);
+    let credits = document.getElementById("credits").value.split(",").map(Number);
+
+    if (grades.length !== credits.length) {
+        alert("Grades and Credits count must match!");
+        return;
+    }
+
+    let totalPoints = 0;
+    let totalCredits = 0;
+
+    for (let i = 0; i < grades.length; i++) {
+        totalPoints += grades[i] * credits[i];
+        totalCredits += credits[i];
+    }
+
+    let sgpa = totalPoints / totalCredits;
+
+    document.getElementById("sgpaResult").innerHTML =
+        "SGPA: " + sgpa.toFixed(2);
+}
+
+function calculateCGPA() {
+    let sgpas = document.getElementById("sgpas").value.split(",").map(Number);
+
+    let sum = sgpas.reduce((a, b) => a + b, 0);
+
+    let cgpa = sum / sgpas.length;
+
+    let percentage = (cgpa - 0.5) * 10;
+
+    document.getElementById("cgpaResult").innerHTML =
+        "CGPA: " + cgpa.toFixed(2) +
+        "<br>Percentage: " + percentage.toFixed(2) + "%";
+}
+</script>
+
+</body>
+</html>
