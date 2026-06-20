@@ -4,9 +4,25 @@ const grades={S:10,A:9,B:8,C:7,D:6,E:5,F:0};
 function addSubject(){
  const d=document.createElement('div');
  d.className='row';
- d.innerHTML=`<input placeholder="Subject">
-<select class="grade"><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select>
-<input class="credit" type="number" placeholder="Credits">`;
+d.innerHTML=`
+<input placeholder="Subject">
+
+<select class="grade">
+<option>S</option>
+<option>A</option>
+<option>B</option>
+<option>C</option>
+<option>D</option>
+<option>E</option>
+<option>F</option>
+</select>
+
+<input class="credit" type="number" step="0.5" placeholder="Credits">
+
+<button onclick="this.parentElement.remove()">
+Delete
+</button>
+`;
  document.getElementById('subjects').appendChild(d);
 }
 
