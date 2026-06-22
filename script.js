@@ -328,7 +328,7 @@ function calculateCGPA(){
 
     document.getElementById("percentage")
     .textContent =
-    ((cgpa - 0.75) * 10)
+    ((cgpa - 0.5) * 10)
     .toFixed(2) + "%";
 }
 
