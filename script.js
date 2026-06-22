@@ -42,3 +42,20 @@ subjects.addEventListener("click", (e) => {
     }
 
 });
+const semesterButtons = document.querySelectorAll(".semester-btn");
+
+semesterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        semesterButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        console.log("Selected Semester:", button.textContent);
+
+    });
+
+});
