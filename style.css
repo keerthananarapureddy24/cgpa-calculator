@@ -1,4 +1,6 @@
 body{
+    display:flex;
+    justify-content:center;
     background:#red;
     font-family:Montserrat,sans-serif;
 }
@@ -41,7 +43,16 @@ header{
 
     margin-top:20px;
 }
-
+.semester-btn{
+    background:white;
+    border:none;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0,1);
+}
+.semester-btn.active{
+    background:#5b21b6;
+    color:white;
+}
 button{
     border:none;
     background:white;
@@ -52,6 +63,14 @@ button{
     padding:12px;
 
     cursor:pointer;
+}
+.subtitle{
+    font-size:14px;
+    opacity:0.9;
+}
+.semester-btn:hover,
+.action-btn:hover{
+    transform:translateY(-2px);
 }
 
 .summary-card{
