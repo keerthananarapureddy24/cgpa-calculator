@@ -31,6 +31,11 @@ addBtn.addEventListener("click", () => {
     `;
 
     subjects.appendChild(card);
+    card.querySelector("select")
+    .addEventListener("change", calculateSGPA);
+
+card.querySelector('input[type="number"]')
+    .addEventListener("input", calculateSGPA);
     
 
 });
@@ -164,3 +169,23 @@ function calculateSGPA(){
     document.getElementById("result")
     .textContent = result;
 }
+calculateSGPA();
+document.querySelectorAll(".subject-card").forEach(card => {
+
+    const gradeSelect =
+        card.querySelector("select");
+
+    const creditInput =
+        card.querySelector('input[type="number"]');
+
+    gradeSelect.addEventListener(
+        "change",
+        calculateSGPA
+    );
+
+    creditInput.addEventListener(
+        "input",
+        calculateSGPA
+    );
+
+});
