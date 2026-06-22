@@ -142,12 +142,69 @@ saveBtn.addEventListener("click", () => {
         JSON.stringify(semesterData)
     );
 
-    calculateCGPA();
+    function calculateCGPA(){
 
-    alert(
-        selectedSemester +
-        " saved successfully!"
-    );
+    const semesters = [
+
+        "1-1","1-2",
+        "2-1","2-2",
+        "3-1","3-2",
+        "4-1","4-2"
+
+    ];
+
+    let totalSGPA = 0;
+    let count = 0;
+    let totalCredits = 0;
+
+    semesters.forEach(sem => {
+
+        const data =
+        JSON.parse(
+            localStorage.getItem(sem)
+        );
+
+        if(data){
+
+            totalSGPA +=
+            Number(data.sgpa);
+
+            count++;
+
+            data.subjects.forEach(subject => {
+
+                totalCredits +=
+                Number(subject.credits);
+
+            });
+
+        }
+
+    });
+
+    let cgpa = 0;
+
+    if(count > 0){
+
+        cgpa = totalSGPA / count;
+
+    }
+
+    const percentage =
+    (cgpa - 0.5) * 10;
+
+    document.getElementById("cgpa")
+    .textContent =
+    cgpa.toFixed(2);
+
+    document.getElementById("totalCredits")
+    .textContent =
+    totalCredits;
+
+    document.getElementById("percentage")
+    .textContent =
+    percentage.toFixed(2) + "%";
+}
 
 });
 
