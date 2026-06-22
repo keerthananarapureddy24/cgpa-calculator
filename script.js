@@ -111,7 +111,14 @@ button.addEventListener("click", () => {
 // ======================
 // SAVE SEMESTER
 // ======================
+saveBtn.addEventListener("click", () => {
 
+    alert("Button Clicked");
+
+    calculateSGPA();
+
+    ...
+});
 saveBtn.addEventListener("click", () => {
 
 ```
