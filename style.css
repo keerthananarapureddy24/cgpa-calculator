@@ -1,6 +1,65 @@
-body{font-family:Arial,sans-serif;background:#f4f4f8;margin:0}
-header{background:#4f6df5;color:white;padding:15px}
-.container{padding:15px}
-.row{display:flex;gap:8px;margin:8px 0}
-input,select,button{padding:8px}
-.card{background:white;padding:10px;margin:8px 0;border-radius:8px}
+body{
+    background:#f6efff;
+    font-family:Montserrat,sans-serif;
+}
+
+.container{
+    max-width:400px;
+    margin:auto;
+}
+
+header{
+    background:linear-gradient(
+    135deg,
+    #724FF6,
+    #C084FC
+    );
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.student-icon{
+    font-size:60px;
+}
+
+.semester-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    margin-top:20px;
+}
+
+button{
+    border:none;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    cursor:pointer;
+}
+
+.summary-card{
+    background:white;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
