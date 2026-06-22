@@ -103,6 +103,14 @@ button{
 
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
+.delete-btn{
+    background:#f3e8ff;
+    color:#724FF6;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    margin-top:10px;
+}
 
 .subject-card{
     background:white;
@@ -148,6 +156,11 @@ select{
     margin-top:15px;
 
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+.distinction-card{
+    text-align:center;
+    color:#d97706;
+    font-weight:700;
 }
 
 .summary-card h3{
