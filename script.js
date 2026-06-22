@@ -71,13 +71,73 @@ semesterButtons.forEach(button => {
 
         button.classList.add("active");
 
-        selectedSemester = button.textContent;
+        selectedSemester =
+button.textContent;
 
-        console.log("Selected Semester:", selectedSemester);
+loadSemester(
+selectedSemester
+);
+
+console.log(
+"Selected Semester:",
+selectedSemester
+);
+
+});
+function loadSemester(semester){
+
+    subjects.innerHTML = "";
+
+    const data =
+        JSON.parse(localStorage.getItem(semester)) || [];
+
+    data.forEach(item => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("subject-card");
+
+        card.innerHTML = `
+            <input type="text" value="${item.subject}">
+
+            <div class="subject-row">
+
+                <select>
+                    <option value="S" ${item.grade==="S"?"selected":""}>S</option>
+                    <option value="A" ${item.grade==="A"?"selected":""}>A</option>
+                    <option value="B" ${item.grade==="B"?"selected":""}>B</option>
+                    <option value="C" ${item.grade==="C"?"selected":""}>C</option>
+                    <option value="D" ${item.grade==="D"?"selected":""}>D</option>
+                    <option value="E" ${item.grade==="E"?"selected":""}>E</option>
+                    <option value="F" ${item.grade==="F"?"selected":""}>F</option>
+                </select>
+
+                <input type="number"
+                       value="${item.credits}">
+
+                <button type="button"
+                        class="delete-btn">🗑️</button>
+
+            </div>
+        `;
+
+        subjects.appendChild(card);
+
+        card.querySelector("select")
+            .addEventListener("change",
+            calculateSGPA);
+
+        card.querySelector(
+            'input[type="number"]'
+        ).addEventListener(
+            "input",
+            calculateSGPA
+        );
 
     });
 
-});
+    calculateSGPA();
+}
 
 
 // Save Semester
@@ -86,7 +146,41 @@ const saveBtn = document.getElementById("saveBtn");
 
 saveBtn.addEventListener("click", () => {
 
-    alert(selectedSemester + " saved successfully!");
+    const semesterData = [];
+
+    document.querySelectorAll(".subject-card")
+    .forEach(card => {
+
+        semesterData.push({
+
+            subject:
+            card.querySelector(
+            'input[type="text"]'
+            ).value,
+
+            grade:
+            card.querySelector(
+            "select"
+            ).value,
+
+            credits:
+            card.querySelector(
+            'input[type="number"]'
+            ).value
+
+        });
+
+    });
+
+    localStorage.setItem(
+        selectedSemester,
+        JSON.stringify(semesterData)
+    );
+
+    alert(
+        selectedSemester +
+        " saved successfully!"
+    );
 
 });
 function calculateSGPA(){
@@ -196,3 +290,4 @@ document.querySelectorAll(".subject-card").forEach(card => {
     creditInput.addEventListener("input", calculateSGPA);
 
 });
+loadSemester("1-1");
