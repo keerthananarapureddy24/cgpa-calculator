@@ -1,49 +1,85 @@
-<div class="container">
-  <head>
-     <link rel="stylesheet" href="style.css">
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
 
-  <header>
-    <div>
-      <h1>📊 CGPA Calculator</h1>
-      <p>Study Smart, Calculate Easy ✨</p>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <div>
+            <h1>📊 CGPA Calculator</h1>
+            <p class="subtitle">Study Smart, Calculate Easy ✨</p>
+        </div>
+
+        <div class="student-icon">
+            👨‍🎓
+        </div>
+    </header>
+
+    <h2>Select Semester 🎓</h2>
+
+    <div class="semester-grid">
+        <button class="semester-btn active">1-1</button>
+        <button class="semester-btn">1-2</button>
+        <button class="semester-btn">2-1</button>
+        <button class="semester-btn">2-2</button>
+        <button class="semester-btn">3-1</button>
+        <button class="semester-btn">3-2</button>
+        <button class="semester-btn">4-1</button>
+        <button class="semester-btn">4-2</button>
     </div>
 
-    <div class="student-icon">
-      👨‍🎓
-  <div class="semester-grid">
-    <button class="semester-btn active">1-1</button>
-    <button class="semester-btn">1-2</button>
-    <button class="semester-btn">2-1</button>
-    <button class="semester-btn">2-2</button>
-    <button class="semester-btn">3-1</button>
-    <button class="semester-btn">3-2</button>
-    <button class="semester-btn">4-1</button>
-    <button class="semester-btn">4-2</button>
+    <div class="action-buttons">
+        <button id="addBtn">+ Add Subject</button>
+        <button id="saveBtn">💾 Save Semester</button>
+    </div>
+
+    <div id="subjects">
+
+        <div class="subject-card">
+            <input type="text" placeholder="Subject Name">
+
+            <div class="subject-row">
+                <select>
+                    <option>Grade</option>
+                    <option>O</option>
+                    <option>A+</option>
+                    <option>A</option>
+                    <option>B+</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>F</option>
+                </select>
+
+                <input type="number" placeholder="Credits">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+        <h3>📊 SGPA Summary</h3>
+        <p>SGPA: 0.00</p>
+        <p>Credits: 0</p>
+        <p>Backlogs: 0</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>🎯 CGPA Summary</h3>
+        <p>CGPA: 0.00</p>
+        <p>Percentage: 0%</p>
+    </div>
+
 </div>
 
-  <div class="action-buttons">
-    <button id="addBtn" class="action-btn">+ Add Subject</button>
-    <button id="saveBtn" class="action-btn">💾 Save Semester</button>
-  </div>
-
-  <div id="subjects">
-    <!-- Subject rows appear here -->
-  </div>
-
-  <div class="summary-card">
-    <h3>📊 SGPA Summary</h3>
-    <p>SGPA: 0.00</p>
-    <p>Credits: 0</p>
-    <p>Backlogs: 0</p>
-  </div>
-
-  <div class="summary-card">
-    <h3>🎯 CGPA Summary</h3>
-    <p>CGPA: 0.00</p>
-    <p>Percentage: 0%</p>
-  </div>
-
-</div>
-<script src="script.js"></script>
+</body>
+</html>
