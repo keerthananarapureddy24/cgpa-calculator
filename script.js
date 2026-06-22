@@ -33,9 +33,11 @@ addBtn.addEventListener("click", () => {
 });
 subjects.addEventListener("click", (e) => {
 
-    if(e.target.classList.contains("delete-btn")){
+    const deleteBtn = e.target.closest(".delete-btn");
 
-        e.target.closest(".subject-card").remove();
+    if(deleteBtn){
+
+        deleteBtn.closest(".subject-card").remove();
 
     }
 
