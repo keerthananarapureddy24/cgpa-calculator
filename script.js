@@ -141,44 +141,12 @@ saveBtn.addEventListener("click", () => {
         selectedSemester,
         JSON.stringify(semesterData)
     );
+    calculateCGPA();
 
-    function calculateCGPA(){
-
-    const semesters = [
-
-        "1-1","1-2",
-        "2-1","2-2",
-        "3-1","3-2",
-        "4-1","4-2"
-
-    ];
-
-    let totalSGPA = 0;
-    let count = 0;
-    let totalCredits = 0;
-
-    semesters.forEach(sem => {
-
-        const data =
-        JSON.parse(
-            localStorage.getItem(sem)
-        );
-
-        if(data){
-
-            totalSGPA +=
-            Number(data.sgpa);
-
-            count++;
-
-            data.subjects.forEach(subject => {
-
-                totalCredits +=
-                Number(subject.credits);
-
-            });
-
-        }
+alert(
+    selectedSemester +
+    " saved successfully!"
+);
 
     });
 
@@ -345,16 +313,15 @@ function calculateSGPA(){
 function calculateCGPA(){
 
     const semesters = [
-
         "1-1","1-2",
         "2-1","2-2",
         "3-1","3-2",
         "4-1","4-2"
-
     ];
 
-    let total = 0;
+    let totalSGPA = 0;
     let count = 0;
+    let totalCredits = 0;
 
     semesters.forEach(sem => {
 
@@ -365,10 +332,21 @@ function calculateCGPA(){
 
         if(data){
 
-            total +=
+            totalSGPA +=
             Number(data.sgpa);
 
             count++;
+
+            if(data.subjects){
+
+                data.subjects.forEach(subject => {
+
+                    totalCredits +=
+                    Number(subject.credits);
+
+                });
+
+            }
 
         }
 
@@ -378,7 +356,7 @@ function calculateCGPA(){
 
     if(count > 0){
 
-        cgpa = total / count;
+        cgpa = totalSGPA / count;
 
     }
 
@@ -386,13 +364,15 @@ function calculateCGPA(){
     .textContent =
     cgpa.toFixed(2);
 
+    document.getElementById("totalCredits")
+    .textContent =
+    totalCredits;
+
     document.getElementById("percentage")
     .textContent =
     ((cgpa - 0.75) * 10)
     .toFixed(2) + "%";
-
 }
-
 // ======================
 // INITIAL LOAD
 // ======================
