@@ -6,10 +6,9 @@ body{
     min-height:100vh;
 
     background:linear-gradient(
-        to bottom right,
-        #724FF6,
-        #B06CFB,
-        #D8B4FE
+        135deg,
+        #7c3aed,
+        #a855f7
     );
 
     font-family:'Montserrat', sans-serif;
