@@ -1,26 +1,156 @@
 body{
+    margin:0;
+    padding:20px;
+    display:flex;
+    justify-content:center;
     background:#f5f5f5;
-    font-family:Montserrat,sans-serif;
+    font-family:'Montserrat',sans-serif;
 }
 
 .container{
-    max-width:400px;
-    margin:auto;
+    width:100%;
+    max-width:420px;
+}
+
+header{
+    background:linear-gradient(
+        135deg,
+        #724FF6,
+        #C084FC
+    );
+
+    color:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+header h1{
+    margin:0;
+    font-size:32px;
+}
+
+.subtitle{
+    margin-top:10px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+.student-icon{
+    font-size:60px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+.semester-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.semester-btn{
+    background:white;
+    border:none;
+    border-radius:12px;
+    padding:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
+    transition:0.3s;
+}
+
+.semester-btn:hover{
+    transform:translateY(-2px);
+}
+
+.semester-btn.active{
+    background:#5B21B6;
+    color:white;
+}
+
+.action-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+button{
+    border:none;
+    background:white;
+    color:#724FF6;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.subject-card{
+    background:white;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
+    margin-top:15px;
+}
+
+input,
+select{
+    width:100%;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f3e8ff;
+
+    margin-bottom:10px;
+
+    box-sizing:border-box;
+}
+
+.subject-row{
+    display:flex;
+    gap:10px;
 }
 
 .summary-card{
     background:white;
+
     padding:15px;
-    margin-top:15px;
+
     border-radius:16px;
+
+    margin-top:15px;
+
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 .summary-card h3{
-    font-size:24px;
-    margin:0 0 10px 0;
-}
-
-.summary-card p{
-    font-size:16px;
+    margin-top:0;
+    color:#724FF6;
 }
