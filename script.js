@@ -57,22 +57,34 @@ semesterButtons.forEach(button => {
         console.log("Selected Semester:", button.textContent);
 
     });
-    const semesterButtons = document.querySelectorAll(".semester-btn");
+    let selectedSemester = "1-1";
+    const semesterButtons =
+document.querySelectorAll(".semester-btn");
 
 semesterButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        semesterButtons.forEach(btn => {
-            btn.classList.remove("active");
-        });
+        semesterButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
 
         button.classList.add("active");
 
-        console.log("Selected:", button.textContent);
+        selectedSemester =
+            button.textContent;
 
     });
 
-});
+});  
+                        const saveBtn =
+document.getElementById("saveBtn");
+
+saveBtn.addEventListener("click", () => {
+
+    alert(
+      selectedSemester +
+      " saved successfully!"
+    );
 
 });
