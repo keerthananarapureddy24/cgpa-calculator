@@ -13,12 +13,12 @@ addBtn.addEventListener("click", () => {
         <div class="subject-row">
             <select>
                 <option>Grade</option>
-                <option>O</option>
-                <option>A+</option>
+                <option>S</option>
                 <option>A</option>
-                <option>B+</option>
                 <option>B</option>
                 <option>C</option>
+                <option>D</option>
+                <option>E</option>
                 <option>F</option>
             </select>
 
@@ -57,5 +57,22 @@ semesterButtons.forEach(button => {
         console.log("Selected Semester:", button.textContent);
 
     });
+    const semesterButtons = document.querySelectorAll(".semester-btn");
+
+semesterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        semesterButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        console.log("Selected:", button.textContent);
+
+    });
+
+});
 
 });
