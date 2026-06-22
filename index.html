@@ -43,45 +43,33 @@
         <button id="saveBtn">💾 Save Semester</button>
     </div>
 
+    <!-- Subjects will appear here -->
     <div id="subjects"></div>
 
-        <div class="subject-card">
-            <input type="text" placeholder="Subject Name">
-
-            <div class="subject-row">
-                <select>
-                    <option>Grade</option>
-                    <option>S</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                    <option>F</option>
-                </select>
-
-                <input type="number" placeholder="Credits">
-                <button class="delete-btn">🗑️</button>
-            </div>
-        </div>
-
-<div class="summary-card">
-    <h3>📊 SGPA Summary</h3>
-    <p>SGPA: <span id="sgpa">0.00</span></p>
-    <p>Credits: <span id="credits">0</span></p>
-    <p>Backlogs: <span id="backlogs">0</span></p>
-</div>
-
+    <!-- SGPA Summary -->
     <div class="summary-card">
-    <h3>🎯 CGPA Summary</h3>
-    <p>CGPA: <span id="cgpa">0.00</span></p>
-    <p>Percentage: <span id="percentage">0%</span></p>
+        <h3>📊 SGPA Summary</h3>
+        <p>SGPA: <span id="sgpa">0.00</span></p>
+        <p>Credits: <span id="credits">0</span></p>
+        <p>Backlogs: <span id="backlogs">0</span></p>
+    </div>
+
+    <!-- CGPA Summary -->
+    <div class="summary-card">
+        <h3>🎯 CGPA Summary</h3>
+        <p>CGPA: <span id="cgpa">0.00</span></p>
+        <p>Percentage: <span id="percentage">0.00%</span></p>
+    </div>
+
+    <!-- Result -->
+    <div class="summary-card distinction-card">
+        <h3>🏆 Result</h3>
+        <p id="result">---</p>
+    </div>
+
 </div>
-<div class="summary-card distinction-card">
-    <h3>🏆 Result</h3>
-    <p id="result">---</p>
-</div>
-</div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
