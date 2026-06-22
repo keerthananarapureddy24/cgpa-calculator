@@ -5,53 +5,60 @@ const subjects = document.getElementById("subjects");
 let selectedSemester = "1-1";
 
 // ======================
-// ADD SUBJECT
+// CREATE SUBJECT CARD
 // ======================
 
 function createSubjectCard(subject = "", grade = "S", credits = "") {
 
-    const card = document.createElement("div");
+```
+const card = document.createElement("div");
 
-    card.classList.add("subject-card");
+card.classList.add("subject-card");
 
-    card.innerHTML = `
-        <input type="text"
-               placeholder="Subject Name"
-               value="${subject}">
+card.innerHTML = `
+    <input type="text"
+           placeholder="Subject Name"
+           value="${subject}">
 
-        <div class="subject-row">
+    <div class="subject-row">
 
-            <select>
-                <option value="S" ${grade==="S"?"selected":""}>S</option>
-                <option value="A" ${grade==="A"?"selected":""}>A</option>
-                <option value="B" ${grade==="B"?"selected":""}>B</option>
-                <option value="C" ${grade==="C"?"selected":""}>C</option>
-                <option value="D" ${grade==="D"?"selected":""}>D</option>
-                <option value="E" ${grade==="E"?"selected":""}>E</option>
-                <option value="F" ${grade==="F"?"selected":""}>F</option>
-            </select>
+        <select>
+            <option value="S" ${grade==="S"?"selected":""}>S</option>
+            <option value="A" ${grade==="A"?"selected":""}>A</option>
+            <option value="B" ${grade==="B"?"selected":""}>B</option>
+            <option value="C" ${grade==="C"?"selected":""}>C</option>
+            <option value="D" ${grade==="D"?"selected":""}>D</option>
+            <option value="E" ${grade==="E"?"selected":""}>E</option>
+            <option value="F" ${grade==="F"?"selected":""}>F</option>
+        </select>
 
-            <input type="number"
-                   placeholder="Credits"
-                   value="${credits}">
+        <input type="number"
+               placeholder="Credits"
+               value="${credits}">
 
-            <button type="button"
-                    class="delete-btn">🗑️</button>
+        <button type="button"
+                class="delete-btn">🗑️</button>
 
-        </div>
-    `;
+    </div>
+`;
 
-    subjects.appendChild(card);
+subjects.appendChild(card);
 
-    card.querySelector("select")
-        .addEventListener("change", calculateSGPA);
+card.querySelector("select")
+    .addEventListener("change", calculateSGPA);
 
-    card.querySelector('input[type="number"]')
-        .addEventListener("input", calculateSGPA);
+card.querySelector('input[type="number"]')
+    .addEventListener("input", calculateSGPA);
+```
+
 }
 
+// ======================
+// ADD SUBJECT
+// ======================
+
 addBtn.addEventListener("click", () => {
-    createSubjectCard();
+createSubjectCard();
 });
 
 // ======================
@@ -60,19 +67,21 @@ addBtn.addEventListener("click", () => {
 
 subjects.addEventListener("click", (e) => {
 
-    const deleteBtn = e.target.closest(".delete-btn");
+```
+const deleteBtn = e.target.closest(".delete-btn");
 
-    if(deleteBtn){
+if(deleteBtn){
 
-        deleteBtn.closest(".subject-card").remove();
+    deleteBtn.closest(".subject-card").remove();
 
-        calculateSGPA();
-    }
+    calculateSGPA();
+}
+```
 
 });
 
 // ======================
-// SEMESTER BUTTONS
+// SEMESTER SELECTION
 // ======================
 
 const semesterButtons =
@@ -80,20 +89,22 @@ document.querySelectorAll(".semester-btn");
 
 semesterButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+```
+button.addEventListener("click", () => {
 
-        semesterButtons.forEach(btn =>
-            btn.classList.remove("active")
-        );
+    semesterButtons.forEach(btn =>
+        btn.classList.remove("active")
+    );
 
-        button.classList.add("active");
+    button.classList.add("active");
 
-        selectedSemester =
-        button.textContent.trim();
+    selectedSemester =
+    button.textContent.trim();
 
-        loadSemester(selectedSemester);
+    loadSemester(selectedSemester);
 
-    });
+});
+```
 
 });
 
@@ -103,76 +114,53 @@ semesterButtons.forEach(button => {
 
 saveBtn.addEventListener("click", () => {
 
-    calculateSGPA();
+```
+calculateSGPA();
 
-    const semesterData = {
+const semesterData = {
 
-        subjects: [],
+    sgpa:
+    document.getElementById("sgpa").textContent,
 
-        sgpa:
-        document.getElementById("sgpa").textContent
+    subjects: []
 
-    };
+};
 
-    document.querySelectorAll(".subject-card")
-    .forEach(card => {
+document.querySelectorAll(".subject-card")
+.forEach(card => {
 
-        semesterData.subjects.push({
+    semesterData.subjects.push({
 
-            subject:
-            card.querySelector(
-            'input[type="text"]'
-            ).value,
+        subject:
+        card.querySelector(
+        'input[type="text"]'
+        ).value,
 
-            grade:
-            card.querySelector("select")
-            .value,
+        grade:
+        card.querySelector("select")
+        .value,
 
-            credits:
-            card.querySelector(
-            'input[type="number"]'
-            ).value
-
-        });
+        credits:
+        card.querySelector(
+        'input[type="number"]'
+        ).value
 
     });
 
-    localStorage.setItem(
-        selectedSemester,
-        JSON.stringify(semesterData)
-    );
-    calculateCGPA();
+});
+
+localStorage.setItem(
+    selectedSemester,
+    JSON.stringify(semesterData)
+);
+
+calculateCGPA();
 
 alert(
     selectedSemester +
     " saved successfully!"
 );
-
-    });
-
-    let cgpa = 0;
-
-    if(count > 0){
-
-        cgpa = totalSGPA / count;
-
-    }
-
-    const percentage =
-    (cgpa - 0.5) * 10;
-
-    document.getElementById("cgpa")
-    .textContent =
-    cgpa.toFixed(2);
-
-    document.getElementById("totalCredits")
-    .textContent =
-    totalCredits;
-
-    document.getElementById("percentage")
-    .textContent =
-    percentage.toFixed(2) + "%";
-}
+```
 
 });
 
@@ -182,33 +170,36 @@ alert(
 
 function loadSemester(semester){
 
-    subjects.innerHTML = "";
+```
+subjects.innerHTML = "";
 
-    const data =
-    JSON.parse(
-        localStorage.getItem(semester)
-    );
+const data =
+JSON.parse(
+    localStorage.getItem(semester)
+);
 
-    if(!data){
+if(!data){
 
-        createSubjectCard();
-
-        calculateSGPA();
-
-        return;
-    }
-
-    data.subjects.forEach(item => {
-
-        createSubjectCard(
-            item.subject,
-            item.grade,
-            item.credits
-        );
-
-    });
+    createSubjectCard();
 
     calculateSGPA();
+
+    return;
+}
+
+data.subjects.forEach(item => {
+
+    createSubjectCard(
+        item.subject,
+        item.grade,
+        item.credits
+    );
+
+});
+
+calculateSGPA();
+```
+
 }
 
 // ======================
@@ -217,92 +208,95 @@ function loadSemester(semester){
 
 function calculateSGPA(){
 
-    const gradeMap = {
+```
+const gradeMap = {
 
-        S:10,
-        A:9,
-        B:8,
-        C:7,
-        D:6,
-        E:5,
-        F:0
+    S:10,
+    A:9,
+    B:8,
+    C:7,
+    D:6,
+    E:5,
+    F:0
 
-    };
+};
 
-    let totalCredits = 0;
-    let totalPoints = 0;
-    let backlogs = 0;
+let totalCredits = 0;
+let totalPoints = 0;
+let backlogs = 0;
 
-    document.querySelectorAll(".subject-card")
-    .forEach(card => {
+document.querySelectorAll(".subject-card")
+.forEach(card => {
 
-        const grade =
-        card.querySelector("select").value;
+    const grade =
+    card.querySelector("select").value;
 
-        const credits =
-        Number(
-            card.querySelector(
-            'input[type="number"]'
-            ).value
-        );
+    const credits =
+    Number(
+        card.querySelector(
+        'input[type="number"]'
+        ).value
+    );
 
-        if(!credits) return;
+    if(!credits) return;
 
-        totalCredits += credits;
+    totalCredits += credits;
 
-        totalPoints +=
-        gradeMap[grade] * credits;
+    totalPoints +=
+    gradeMap[grade] * credits;
 
-        if(grade === "F"){
-            backlogs++;
-        }
-
-    });
-
-    let sgpa = 0;
-
-    if(totalCredits > 0){
-
-        sgpa =
-        totalPoints / totalCredits;
-
+    if(grade === "F"){
+        backlogs++;
     }
 
-    document.getElementById("sgpa")
-    .textContent =
-    sgpa.toFixed(2);
+});
 
-    document.getElementById("credits")
-    .textContent =
-    totalCredits;
+let sgpa = 0;
 
-    document.getElementById("backlogs")
-    .textContent =
-    backlogs;
+if(totalCredits > 0){
 
-    let result = "FAIL";
+    sgpa =
+    totalPoints / totalCredits;
 
-    if(sgpa >= 8.0){
+}
 
-        result =
-        "FIRST CLASS WITH DISTINCTION";
+document.getElementById("sgpa")
+.textContent =
+sgpa.toFixed(2);
 
-    }
-    else if(sgpa >= 6.5){
+document.getElementById("credits")
+.textContent =
+totalCredits;
 
-        result =
-        "FIRST CLASS";
+document.getElementById("backlogs")
+.textContent =
+backlogs;
 
-    }
-    else if(sgpa >= 5.5){
+let result = "FAIL";
 
-        result =
-        "SECOND CLASS";
+if(sgpa >= 8.0){
 
-    }
+    result =
+    "FIRST CLASS WITH DISTINCTION";
 
-    document.getElementById("result")
-    .textContent = result;
+}
+else if(sgpa >= 6.5){
+
+    result =
+    "FIRST CLASS";
+
+}
+else if(sgpa >= 5.5){
+
+    result =
+    "SECOND CLASS";
+
+}
+
+document.getElementById("result")
+.textContent =
+result;
+```
 
 }
 
@@ -312,72 +306,79 @@ function calculateSGPA(){
 
 function calculateCGPA(){
 
-    const semesters = [
-        "1-1","1-2",
-        "2-1","2-2",
-        "3-1","3-2",
-        "4-1","4-2"
-    ];
+```
+const semesters = [
 
-    let totalSGPA = 0;
-    let count = 0;
-    let totalCredits = 0;
+    "1-1","1-2",
+    "2-1","2-2",
+    "3-1","3-2",
+    "4-1","4-2"
 
-    semesters.forEach(sem => {
+];
 
-        const data =
-        JSON.parse(
-            localStorage.getItem(sem)
-        );
+let totalSGPA = 0;
+let count = 0;
+let totalCredits = 0;
 
-        if(data){
+semesters.forEach(sem => {
 
-            totalSGPA +=
-            Number(data.sgpa);
+    const data =
+    JSON.parse(
+        localStorage.getItem(sem)
+    );
 
-            count++;
+    if(data){
 
-            if(data.subjects){
+        totalSGPA +=
+        Number(data.sgpa);
 
-                data.subjects.forEach(subject => {
+        count++;
 
-                    totalCredits +=
-                    Number(subject.credits);
+        if(data.subjects){
 
-                });
+            data.subjects.forEach(subject => {
 
-            }
+                totalCredits +=
+                Number(subject.credits);
+
+            });
 
         }
 
-    });
-
-    let cgpa = 0;
-
-    if(count > 0){
-
-        cgpa = totalSGPA / count;
-
     }
 
-    document.getElementById("cgpa")
-    .textContent =
-    cgpa.toFixed(2);
+});
 
-    document.getElementById("totalCredits")
-    .textContent =
-    totalCredits;
+let cgpa = 0;
 
-    document.getElementById("percentage")
-    .textContent =
-    ((cgpa - 0.75) * 10)
-    .toFixed(2) + "%";
+if(count > 0){
+
+    cgpa =
+    totalSGPA / count;
+
 }
+
+document.getElementById("cgpa")
+.textContent =
+cgpa.toFixed(2);
+
+document.getElementById("totalCredits")
+.textContent =
+totalCredits;
+
+document.getElementById("percentage")
+.textContent =
+((cgpa - 0.5) * 10)
+.toFixed(2) + "%";
+```
+
+}
+
 // ======================
 // INITIAL LOAD
 // ======================
 
-createSubjectCard();
+loadSemester("1-1");
 
 calculateSGPA();
 
