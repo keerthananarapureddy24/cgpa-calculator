@@ -188,86 +188,30 @@ function loadSemester(semester){
 // SGPA CALCULATION
 // ======================
 
-function calculateSGPA(){
+if(backlogs > 0){
 
-    const gradeMap = {
+    result = "FAIL";
 
-        S:10,
-        A:9,
-        B:8,
-        C:7,
-        D:6,
-        E:5,
-        F:0
-    };
+}
+else if(sgpa >= 8.0){
 
-    let totalCredits = 0;
-    let totalPoints = 0;
-    let backlogs = 0;
+    result = "FIRST CLASS WITH DISTINCTION";
 
-    document.querySelectorAll(".subject-card")
-    .forEach(card => {
+}
+else if(sgpa >= 6.5){
 
-        const grade =
-        card.querySelector("select").value;
+    result = "FIRST CLASS";
 
-        const credits =
-        Number(
-            card.querySelector(
-            'input[type="number"]'
-            ).value
-        );
+}
+else if(sgpa >= 5.5){
 
-        if(!credits) return;
+    result = "SECOND CLASS";
 
-        totalCredits += credits;
+}
+else{
 
-        totalPoints +=
-        gradeMap[grade] * credits;
+    result = "PASS";
 
-        if(grade === "F"){
-            backlogs++;
-        }
-    });
-
-    let sgpa = 0;
-
-    if(totalCredits > 0){
-
-        sgpa =
-        totalPoints / totalCredits;
-    }
-
-    document.getElementById("sgpa")
-    .textContent =
-    sgpa.toFixed(2);
-
-    document.getElementById("credits")
-    .textContent =
-    totalCredits;
-
-    document.getElementById("backlogs")
-    .textContent =
-    backlogs;
-
-    let result = "FAIL";
-
-    if(sgpa >= 8.0){
-        result =
-        "FIRST CLASS WITH DISTINCTION";
-    }
-    else if(sgpa >= 6.5){
-        result =
-        "FIRST CLASS";
-    }
-    else if(sgpa >= 5.5){
-        result =
-        "SECOND CLASS";
-    }
-
-    document.getElementById("result")
-    .textContent =
-    result;
 }
 
 // ======================
