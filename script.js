@@ -188,7 +188,71 @@ function loadSemester(semester){
 // SGPA CALCULATION
 // ======================
 
-if(backlogs > 0){
+function calculateSGPA(){
+
+    const gradeMap = {
+
+        S:10,
+        A:9,
+        B:8,
+        C:7,
+        D:6,
+        E:5,
+        F:0
+    };
+
+    let totalCredits = 0;
+    let totalPoints = 0;
+    let backlogs = 0;
+
+    document.querySelectorAll(".subject-card")
+    .forEach(card => {
+
+        const grade =
+        card.querySelector("select").value;
+
+        const credits =
+        Number(
+            card.querySelector(
+            'input[type="number"]'
+            ).value
+        );
+
+        if(!credits) return;
+
+        totalCredits += credits;
+
+        totalPoints +=
+        gradeMap[grade] * credits;
+
+        if(grade === "F"){
+            backlogs++;
+        }
+    });
+
+    let sgpa = 0;
+
+    if(totalCredits > 0){
+
+        sgpa =
+        totalPoints / totalCredits;
+    }
+
+    document.getElementById("sgpa")
+    .textContent =
+    sgpa.toFixed(2);
+
+    document.getElementById("credits")
+    .textContent =
+    totalCredits;
+
+    document.getElementById("backlogs")
+    .textContent =
+    backlogs;
+
+    let result = "FAIL";
+
+    if(backlogs > 0){
 
     result = "FAIL";
 
@@ -211,7 +275,8 @@ else if(sgpa >= 5.5){
 else{
 
     result = "PASS";
-
+}
+document.getElementById("result").textContent = result;
 }
 
 // ======================
