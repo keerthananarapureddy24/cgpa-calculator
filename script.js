@@ -147,8 +147,9 @@ saveBtn.addEventListener("click", () => {
         " saved successfully!"
     );
 });
+
 // ======================
-// CLEAR ALL DATA
+// CLEAR CURRENT SEMESTER
 // ======================
 
 const clearBtn = document.getElementById("clearBtn");
@@ -156,16 +157,18 @@ const clearBtn = document.getElementById("clearBtn");
 clearBtn.addEventListener("click", () => {
 
     const confirmDelete = confirm(
-        "Are you sure?\n\nThis will delete ALL saved semester data."
+        "Delete data for Semester " + selectedSemester + " ?"
     );
 
     if(confirmDelete){
 
-        localStorage.clear();
+        localStorage.removeItem(selectedSemester);
 
-        alert("All semester data has been deleted.");
+        alert(selectedSemester + " data deleted successfully!");
 
-        location.reload();
+        loadSemester(selectedSemester);
+
+        calculateCGPA();
     }
 
 });
