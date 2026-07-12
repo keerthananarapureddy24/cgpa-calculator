@@ -22,13 +22,13 @@ function createSubjectCard(subject = "", grade = "S", credits = "") {
         <div class="subject-row">
 
             <select>
-                <option value="S" ${grade==="S"?"selected":""}>S</option>
-                <option value="A" ${grade==="A"?"selected":""}>A</option>
-                <option value="B" ${grade==="B"?"selected":""}>B</option>
-                <option value="C" ${grade==="C"?"selected":""}>C</option>
-                <option value="D" ${grade==="D"?"selected":""}>D</option>
-                <option value="E" ${grade==="E"?"selected":""}>E</option>
-                <option value="F" ${grade==="F"?"selected":""}>F</option>
+                <option value="S" ${grade === "S" ? "selected" : ""}>S</option>
+                <option value="A" ${grade === "A" ? "selected" : ""}>A</option>
+                <option value="B" ${grade === "B" ? "selected" : ""}>B</option>
+                <option value="C" ${grade === "C" ? "selected" : ""}>C</option>
+                <option value="D" ${grade === "D" ? "selected" : ""}>D</option>
+                <option value="E" ${grade === "E" ? "selected" : ""}>E</option>
+                <option value="F" ${grade === "F" ? "selected" : ""}>F</option>
             </select>
 
             <input type="number"
@@ -66,7 +66,7 @@ subjects.addEventListener("click", (e) => {
 
     const deleteBtn = e.target.closest(".delete-btn");
 
-    if(deleteBtn){
+    if (deleteBtn) {
 
         deleteBtn.closest(".subject-card").remove();
 
@@ -79,7 +79,7 @@ subjects.addEventListener("click", (e) => {
 // ======================
 
 const semesterButtons =
-document.querySelectorAll(".semester-btn");
+    document.querySelectorAll(".semester-btn");
 
 semesterButtons.forEach(button => {
 
@@ -92,7 +92,7 @@ semesterButtons.forEach(button => {
         button.classList.add("active");
 
         selectedSemester =
-        button.textContent.trim();
+            button.textContent.trim();
 
         loadSemester(selectedSemester);
 
@@ -107,33 +107,33 @@ saveBtn.addEventListener("click", () => {
 
     calculateSGPA();
 
-   const semesterData = {
-    subjects: [],
-    sgpa: Number(document.getElementById("sgpa").textContent),
-    totalCredits: Number(document.getElementById("credits").textContent)
-};
+    const semesterData = {
+        subjects: [],
+        sgpa: Number(document.getElementById("sgpa").textContent),
+        totalCredits: Number(document.getElementById("credits").textContent)
+    };
 
     document.querySelectorAll(".subject-card")
-    .forEach(card => {
+        .forEach(card => {
 
-        semesterData.subjects.push({
+            semesterData.subjects.push({
 
-            subject:
-            card.querySelector(
-            'input[type="text"]'
-            ).value,
+                subject:
+                    card.querySelector(
+                        'input[type="text"]'
+                    ).value,
 
-            grade:
-            card.querySelector("select")
-            .value,
+                grade:
+                    card.querySelector("select")
+                        .value,
 
-            credits:
-            card.querySelector(
-            'input[type="number"]'
-            ).value
+                credits:
+                    card.querySelector(
+                        'input[type="number"]'
+                    ).value
 
+            });
         });
-    });
 
     localStorage.setItem(
         selectedSemester,
@@ -160,7 +160,7 @@ clearBtn.addEventListener("click", () => {
         "Delete data for Semester " + selectedSemester + " ?"
     );
 
-    if(confirmDelete){
+    if (confirmDelete) {
 
         localStorage.removeItem(selectedSemester);
 
@@ -176,16 +176,16 @@ clearBtn.addEventListener("click", () => {
 // LOAD SEMESTER
 // ======================
 
-function loadSemester(semester){
+function loadSemester(semester) {
 
     subjects.innerHTML = "";
 
     const data =
-    JSON.parse(
-        localStorage.getItem(semester)
-    );
+        JSON.parse(
+            localStorage.getItem(semester)
+        );
 
-    if(!data){
+    if (!data) {
 
         createSubjectCard();
 
@@ -210,17 +210,17 @@ function loadSemester(semester){
 // SGPA CALCULATION
 // ======================
 
-function calculateSGPA(){
+function calculateSGPA() {
 
     const gradeMap = {
 
-        S:10,
-        A:9,
-        B:8,
-        C:7,
-        D:6,
-        E:5,
-        F:0
+        S: 10,
+        A: 9,
+        B: 8,
+        C: 7,
+        D: 6,
+        E: 5,
+        F: 0
     };
 
     let totalCredits = 0;
@@ -228,61 +228,61 @@ function calculateSGPA(){
     let backlogs = 0;
 
     document.querySelectorAll(".subject-card")
-    .forEach(card => {
+        .forEach(card => {
 
-        const grade =
-        card.querySelector("select").value;
+            const grade =
+                card.querySelector("select").value;
 
-        const credits =
-        Number(
-            card.querySelector(
-            'input[type="number"]'
-            ).value
-        );
+            const credits =
+                Number(
+                    card.querySelector(
+                        'input[type="number"]'
+                    ).value
+                );
 
-        if(!credits) return;
+            if (!credits) return;
 
-        totalCredits += credits;
+            totalCredits += credits;
 
-        totalPoints +=
-        gradeMap[grade] * credits;
+            totalPoints +=
+                gradeMap[grade] * credits;
 
-        if(grade === "F"){
-            backlogs++;
-        }
-    });
+            if (grade === "F") {
+                backlogs++;
+            }
+        });
 
     let sgpa = 0;
 
-    if(totalCredits > 0){
+    if (totalCredits > 0) {
 
         sgpa =
-        totalPoints / totalCredits;
+            totalPoints / totalCredits;
     }
 
     document.getElementById("sgpa")
-    .textContent =
-    sgpa.toFixed(2);
+        .textContent =
+        sgpa.toFixed(2);
 
     document.getElementById("credits")
-    .textContent =
-    totalCredits;
+        .textContent =
+        totalCredits;
 
     document.getElementById("backlogs")
-    .textContent =
-    backlogs;
+        .textContent =
+        backlogs;
 }
 // ======================
 // CGPA CALCULATION
 // ======================
 
-function calculateCGPA(){
+function calculateCGPA() {
 
     const semesters = [
-        "1-1","1-2",
-        "2-1","2-2",
-        "3-1","3-2",
-        "4-1","4-2"
+        "1-1", "1-2",
+        "2-1", "2-2",
+        "3-1", "3-2",
+        "4-1", "4-2"
     ];
 
     let totalGradePoints = 0;
@@ -292,7 +292,7 @@ function calculateCGPA(){
 
         const data = JSON.parse(localStorage.getItem(sem));
 
-        if(data){
+        if (data) {
 
             totalGradePoints +=
                 Number(data.sgpa) * Number(data.totalCredits);
@@ -305,7 +305,7 @@ function calculateCGPA(){
 
     let cgpa = 0;
 
-    if(totalCredits > 0){
+    if (totalCredits > 0) {
         cgpa = totalGradePoints / totalCredits;
     }
 
@@ -319,20 +319,20 @@ function calculateCGPA(){
         ((cgpa - 0.5) * 10).toFixed(2) + "%";
     let awardedClass = "";
 
-if(cgpa >= 8.0){
-    awardedClass = "FIRST CLASS WITH DISTINCTION";
-}
-else if(cgpa >= 6.5){
-    awardedClass = "FIRST CLASS";
-}
-else if(cgpa >= 5.5){
-    awardedClass = "SECOND CLASS";
-}
-else{
-    awardedClass = "PASS CLASS";
-}
+    if (cgpa >= 8.0) {
+        awardedClass = "FIRST CLASS WITH DISTINCTION";
+    }
+    else if (cgpa >= 6.5) {
+        awardedClass = "FIRST CLASS";
+    }
+    else if (cgpa >= 5.5) {
+        awardedClass = "SECOND CLASS";
+    }
+    else {
+        awardedClass = "PASS CLASS";
+    }
 
-document.getElementById("result").textContent = awardedClass;
+    document.getElementById("result").textContent = awardedClass;
 }
 // ======================
 // INITIAL LOAD
