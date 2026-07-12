@@ -204,3 +204,11 @@ select{
     color:#D97706;
     font-weight:700;
 }
+#clearBtn{
+    background:#ef4444;
+    color:white;
+}
+
+#clearBtn:hover{
+    background:#dc2626;
+}
