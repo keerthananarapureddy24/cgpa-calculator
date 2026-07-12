@@ -107,13 +107,11 @@ saveBtn.addEventListener("click", () => {
 
     calculateSGPA();
 
-    const semesterData = {
-
-        subjects: [],
-
-        sgpa:
-        document.getElementById("sgpa").textContent
-    };
+   const semesterData = {
+    subjects: [],
+    sgpa: Number(document.getElementById("sgpa").textContent),
+    totalCredits: Number(document.getElementById("credits").textContent)
+};
 
     document.querySelectorAll(".subject-card")
     .forEach(card => {
@@ -292,55 +290,39 @@ function calculateCGPA(){
         "4-1","4-2"
     ];
 
-    let totalSGPA = 0;
-    let count = 0;
+    let totalGradePoints = 0;
     let totalCredits = 0;
 
     semesters.forEach(sem => {
 
-        const data =
-        JSON.parse(
-            localStorage.getItem(sem)
-        );
+        const data = JSON.parse(localStorage.getItem(sem));
 
         if(data){
 
-            totalSGPA +=
-            Number(data.sgpa);
+            totalGradePoints +=
+                Number(data.sgpa) * Number(data.totalCredits);
 
-            count++;
-
-            data.subjects.forEach(subject => {
-
-                totalCredits +=
-                Number(subject.credits);
-
-            });
+            totalCredits +=
+                Number(data.totalCredits);
         }
+
     });
 
     let cgpa = 0;
 
-    if(count > 0){
-
-        cgpa =
-        totalSGPA / count;
+    if(totalCredits > 0){
+        cgpa = totalGradePoints / totalCredits;
     }
 
-    document.getElementById("cgpa")
-    .textContent =
-    cgpa.toFixed(2);
+    document.getElementById("cgpa").textContent =
+        cgpa.toFixed(2);
 
-    document.getElementById("totalCredits")
-    .textContent =
-    totalCredits;
+    document.getElementById("totalCredits").textContent =
+        totalCredits;
 
-    document.getElementById("percentage")
-    .textContent =
-    ((cgpa - 0.5) * 10)
-    .toFixed(2) + "%";
+    document.getElementById("percentage").textContent =
+        ((cgpa - 0.5) * 10).toFixed(2) + "%";
 }
-
 // ======================
 // INITIAL LOAD
 // ======================
