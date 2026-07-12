@@ -147,7 +147,28 @@ saveBtn.addEventListener("click", () => {
         " saved successfully!"
     );
 });
+// ======================
+// CLEAR ALL DATA
+// ======================
 
+const clearBtn = document.getElementById("clearBtn");
+
+clearBtn.addEventListener("click", () => {
+
+    const confirmDelete = confirm(
+        "Are you sure?\n\nThis will delete ALL saved semester data."
+    );
+
+    if(confirmDelete){
+
+        localStorage.clear();
+
+        alert("All semester data has been deleted.");
+
+        location.reload();
+    }
+
+});
 // ======================
 // LOAD SEMESTER
 // ======================
