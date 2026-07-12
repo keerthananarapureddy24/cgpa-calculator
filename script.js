@@ -271,7 +271,7 @@ function calculateSGPA(){
     document.getElementById("backlogs")
     .textContent =
     backlogs;
-
+}
 // ======================
 // CGPA CALCULATION
 // ======================
