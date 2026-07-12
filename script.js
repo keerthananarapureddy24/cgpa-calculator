@@ -272,35 +272,6 @@ function calculateSGPA(){
     .textContent =
     backlogs;
 
-    let result = "FAIL";
-
-    if(backlogs > 0){
-
-    result = "FAIL";
-
-}
-else if(sgpa >= 8.0){
-
-    result = "FIRST CLASS WITH DISTINCTION";
-
-}
-else if(sgpa >= 6.5){
-
-    result = "FIRST CLASS";
-
-}
-else if(sgpa >= 5.5){
-
-    result = "SECOND CLASS";
-
-}
-else{
-
-    result = "PASS";
-}
-document.getElementById("result").textContent = result;
-}
-
 // ======================
 // CGPA CALCULATION
 // ======================
@@ -346,6 +317,22 @@ function calculateCGPA(){
 
     document.getElementById("percentage").textContent =
         ((cgpa - 0.5) * 10).toFixed(2) + "%";
+    let awardedClass = "";
+
+if(cgpa >= 8.0){
+    awardedClass = "FIRST CLASS WITH DISTINCTION";
+}
+else if(cgpa >= 6.5){
+    awardedClass = "FIRST CLASS";
+}
+else if(cgpa >= 5.5){
+    awardedClass = "SECOND CLASS";
+}
+else{
+    awardedClass = "PASS CLASS";
+}
+
+document.getElementById("result").textContent = awardedClass;
 }
 // ======================
 // INITIAL LOAD
